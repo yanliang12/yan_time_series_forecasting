@@ -211,7 +211,7 @@ prediction = predict_time_series_from_model(
 prediction = predict_time_series_from_model(
 	x_npy = 'x.npy', 
 	y_npy = 'y.npy', 
-	date = 'date.npy',
+	date_npy = 'date.npy',
 	model_path = 'time_series.h5',
 	output_prediction_json = 'prediction.json',
 	)

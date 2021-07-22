@@ -19,6 +19,4 @@ jupyter notebook \
 
 access the jupyter notebook at 
 
-```bash
 http://0.0.0.0:8674/notebooks/matplotlib_example.ipynb
-```

@@ -5,6 +5,11 @@ statsmodels
 https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/
 
 
+start docker
+
+```bash
+docker pull yanliang12/yan_time_series_forecasting:1.0.1
+```
 
 start the jupyter notebook in docker
 

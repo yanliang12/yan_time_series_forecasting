@@ -154,7 +154,7 @@ time_series_model = training_time_series_model(
 '''
 
 def training_time_series_model(
-	x, y, data,
+	x, y, data = None,
 	x_npy = None,
 	y_npy = None,
 	date_npy = None,

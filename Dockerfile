@@ -32,6 +32,10 @@ RUN pip3 install h5py==2.10.0
 RUN pip3 install tensorflow==1.14.0
 RUN pip3 install keras==2.2.4
 
+RUN pip3 install jupyterlab==3.0.16
+RUN pip3 install notebook==6.4.0
+RUN pip3 install matplotlib==3.4.2
+
 ####
 
 WORKDIR /
@@ -45,5 +49,11 @@ ENV PYSPARK_DRIVER_PYTHON=/usr/bin/python3
 
 WORKDIR /
 
-RUN echo "1sd6g1s6g15"
+RUN echo "dsg46g16s10g515"
+
+RUN git clone https://github.com/yanliang12/yan_time_series_forecasting.git
+RUN mv yan_time_series_forecasting/* ./
+RUN rm -r yan_time_series_forecasting
+
+CMD bash
 ############Dockerfile############

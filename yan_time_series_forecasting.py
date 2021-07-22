@@ -192,4 +192,79 @@ def training_time_series_model(
 	model.save(model_path)
 	return model
 
+
+
+'''
+
+x = numpy.load('x.npy')
+y = numpy.load('y.npy')
+date = numpy.load('date.npy')
+
+prediction = predict_time_series_from_model(
+	x, 
+	date = date,
+	model_path = 'time_series.h5',
+	y = y,
+	output_prediction_json = 'prediction.json',
+	)
+
+prediction = predict_time_series_from_model(
+	x_npy = 'x.npy', 
+	y_npy = 'y.npy', 
+	date = 'date.npy',
+	model_path = 'time_series.h5',
+	output_prediction_json = 'prediction.json',
+	)
+
+'''
+
+
+def predict_time_series_from_model(
+	model_path = 'time_series.h5',
+	x = None, 
+	y = None,
+	date = None,
+	x_npy = None,
+	y_npy = None,
+	date_npy = None,
+	output_prediction_json = None,
+	):
+	##load the data
+	if x_npy is not None:
+		x = numpy.load(x_npy)
+	if y_npy is not None:
+		y = numpy.load(y_npy)
+	if date_npy is not None:
+		date = numpy.load(date_npy)
+	if x is None:
+		print('no input x')
+		return None
+	##load the model
+	model = keras.models.load_model(model_path)
+	##predict
+	prediction = model.predict(x)
+	##build the prediction dataframe
+	if output_prediction_json is not None:
+		if y is not None:
+			prediction_df = [
+				{"date": str(d), 
+				"prediction": float(p[0]),
+				"label": float(l[0])} \
+				for d, p, l \
+				in zip(date, prediction, y)]
+		else:
+			prediction_df = [
+			{"date": str(d), 
+			"prediction": float(p[0]),
+			} \
+			for d, p \
+			in zip(date, prediction)]
+		prediction_df = pandas.DataFrame(prediction_df)
+		prediction_df.to_json(
+			output_prediction_json, 
+			orient = 'records',
+			lines = True,
+			)
+	return prediction
+
 ###########yan_time_series_forecasting.py#########

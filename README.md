@@ -1,13 +1,12 @@
 # yan_time_series_forecasting
 
-start docker
+## start docker
 
 ```bash
 docker pull yanliang12/yan_time_series_forecasting:1.0.1
 ```
 
-
-run the python program
+## load the data and transform to numpy
 
 ```python
 import yan_time_series_forecasting
@@ -25,12 +24,20 @@ date, y, x = yan_time_series_forecasting.time_series2feature_label_array(
 	y_npy = 'y.npy',
 	date_npy = 'date.npy',
 	)
+```
 
+## train the model
+
+```python
 time_series_model = yan_time_series_forecasting.training_time_series_model(
 	x, y, 
 	model_path = 'time_series.h5',
 	)
+```
 
+## predict 
+
+```python
 prediction = yan_time_series_forecasting.predict_time_series_from_model(
 	x_npy = 'x.npy', 
 	y_npy = 'y.npy', 
@@ -38,10 +45,9 @@ prediction = yan_time_series_forecasting.predict_time_series_from_model(
 	model_path = 'time_series.h5',
 	output_prediction_json = 'prediction.json',
 	)
-
 ```
 
-start the jupyter notebook in docker
+## start the jupyter notebook in docker
 
 ```bash
 jupyter notebook \
@@ -52,7 +58,7 @@ jupyter notebook \
 --allow-root &
 ```
 
-access the jupyter notebook at 
+and access the jupyter notebook at 
 
 http://0.0.0.0:8674/notebooks/matplotlib_example.ipynb
 
